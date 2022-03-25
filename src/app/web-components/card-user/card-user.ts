@@ -14,6 +14,10 @@ export class CardUser extends LitElement {
     .card-content {
       padding: 10px;
     }
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+    }
   `;
 
   @property({ type: Object }) user?: User;
@@ -34,7 +38,10 @@ export class CardUser extends LitElement {
         <div class="card-content">
           <h4>${this.user.fullName}</h4>
           <p>${this.user.role}</p>
-          <button @click=${this.handleEdit}>Edit</button>
+          <div class="card-actions">
+            <button @click=${this.handleEdit}>Edit</button>
+            <button @click=${this.handleRemove}>Remove</button>
+          </div>
         </div>
       </div>
     `;
@@ -43,6 +50,14 @@ export class CardUser extends LitElement {
   private handleEdit() {
     this.dispatchEvent(
       new CustomEvent<User>('edit', {
+        detail: this.user,
+      })
+    );
+  }
+
+  private handleRemove() {
+    this.dispatchEvent(
+      new CustomEvent<User>('remove', {
         detail: this.user,
       })
     );

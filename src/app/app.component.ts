@@ -32,6 +32,12 @@ export class AppComponent {
     console.log('Edit user', user);
   }
 
+  remove(event: Event) {
+    const user = (event as CustomEvent<User>).detail;
+    this.users = this.users.filter((u) => u.id !== user.id);
+    console.log('Remove user', user, this.users);
+  }
+
   constructor() {
     customElements.define('card-user', CardUser);
   }

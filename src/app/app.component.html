@@ -1,4 +1,9 @@
 <div class="container">
-  <card-user *ngFor="let user of users" [user]="user" (edit)="edit($event)">
+  <card-user
+    *ngFor="let user of users"
+    [user]="user"
+    (edit)="edit($event)"
+    (remove)="remove($event)"
+  >
   </card-user>
 </div>
