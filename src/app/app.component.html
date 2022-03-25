@@ -2,7 +2,7 @@
   <card-user
     *ngFor="let user of users"
     [user]="user"
-    (edit)="edit($event)"
+    (save)="save($event)"
     (remove)="remove($event)"
   >
   </card-user>

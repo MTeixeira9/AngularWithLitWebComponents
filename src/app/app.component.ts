@@ -27,15 +27,21 @@ export class AppComponent {
     },
   ];
 
-  edit(event: Event) {
+  save(event: Event): void {
     const user = (event as CustomEvent<User>).detail;
-    console.log('Edit user', user);
+    this.users.map((u) => {
+      if (u.id === user.id) {
+        u.fullName = user.fullName;
+        u.role = user.role;
+      }
+
+      return u;
+    });
   }
 
-  remove(event: Event) {
+  remove(event: Event): void {
     const user = (event as CustomEvent<User>).detail;
     this.users = this.users.filter((u) => u.id !== user.id);
-    console.log('Remove user', user, this.users);
   }
 
   constructor() {
